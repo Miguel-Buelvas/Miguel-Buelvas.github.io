@@ -3,126 +3,437 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miguel Ángel Buelvas - Desarrollador Junior</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>Miguel Ángel Buelvas — Desarrollador Junior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* Fallback básico por si no carga style.css */
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    /* ===== VARIABLES Y RESET ===== */
+    :root {
+      --primary: #1e3c72;
+      --secondary: #2a5298;
+      --accent: #4a90e2;
+      --light: #f9f9fb;
+      --dark: #333;
+      --gray: #666;
+      --border: #eee;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: var(--primary);
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+    }
+
+    .hero img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .hero .subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+      font-size: 1.05rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .contact-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 30px;
+      transition: all 0.3s;
+    }
+
+    .contact-links a:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    /* ===== SECCIONES ===== */
+    .section-bg {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ===== SOBRE MÍ ===== */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: var(--gray);
+    }
+
+    /* ===== HABILIDADES ===== */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .skill-tag {
+      background: #eef5ff;
+      color: var(--primary);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* ===== PROYECTOS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card h3 {
+      color: var(--secondary);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .project-card .tech {
+      font-weight: 600;
+      color: var(--primary);
+      margin: 10px 0;
+    }
+
+    .project-card ul {
+      padding-left: 20px;
+      margin-top: 10px;
+      color: var(--gray);
+    }
+
+    .project-card li {
+      margin-bottom: 6px;
+    }
+
+    /* ===== EXPERIENCIA ===== */
+    .experience-item {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .experience-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .job-title {
+      font-size: 1.4rem;
+      color: var(--secondary);
+      margin-bottom: 5px;
+    }
+
+    .company {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .date {
+      color: var(--gray);
+      font-style: italic;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* ===== EDUCACIÓN ===== */
+    .education-item {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .degree {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .institution {
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .year {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      margin-top: 30px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .subtitle { font-size: 1.1rem; }
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-links a {
+        width: 80%;
+      }
+      h2 { font-size: 1.7rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero img { width: 120px; height: 120px; }
+      section { padding: 40px 0; }
+    }
   </style>
 </head>
 <body>
+
   <!-- Hero -->
   <header class="hero">
     <div class="container">
-      <img src="img/perfil.jpg" alt="Miguel Ángel Buelvas" class="perfil">
+      <img src="img/perfil.jpg" alt="Miguel Ángel Buelvas">
       <h1>Miguel Ángel Buelvas</h1>
-      <p class="titulo">Desarrollador Junior • Educación Digital • IoT</p>
-      <p class="resumen">
-        Tecnólogo en Análisis y Desarrollo de Software con formación en MOOCs, automatización de procesos,
-        integración de IoT y análisis de datos. Proactivo, autodidacta y comprometido con el trabajo en equipo.
+      <div class="subtitle">Desarrollador Junior • Educación Digital • IoT</div>
+      <p>
+        Tecnólogo en Análisis y Desarrollo de Software con enfoque en soluciones educativas, automatización de procesos y sistemas integrados hardware-software.
       </p>
-      <div class="contacto">
-        <a href="mailto:shaka21virgo@hotmail.com">📧 Email</a> |
-        <a href="https://www.linkedin.com/in/miguel-angel-buelvas-ortega-21603622b/" target="_blank">🔗 LinkedIn</a> |
-        <a href="https://github.com/Miguel-Buelvas" target="_blank">💻 GitHub</a>
+      <div class="contact-links">
+        <a href="mailto:shaka21virgo@hotmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://linkedin.com/in/tu-perfil" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Miguel-Buelvas" target="_blank"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
   </header>
 
   <!-- Sobre mí -->
-  <section class="seccion">
+  <section class="section-bg">
     <div class="container">
       <h2>Sobre mí</h2>
-      <p>
-        Soy una persona proactiva, autodidacta y organizada, con formación técnica en mantenimiento electrónico
-        y tecnológica en desarrollo de software. Combino conocimientos de hardware y software para crear
-        soluciones integrales. Me apasiona la educación digital, el análisis de datos y la automatización de procesos.
-        Tengo experiencia en programación básica, gestión de plataformas LMS, diseño de MOOCs, y fundamentos en
-        Big Data, computación en la nube e inteligencia de negocios.
-      </p>
+      <div class="about-content">
+        <p>
+          Soy una persona proactiva, autodidacta y organizada, con formación técnica en mantenimiento electrónico y tecnológica en desarrollo de software. 
+          Combino conocimientos de hardware y software para crear soluciones integrales en entornos innovadores.
+        </p>
+        <p style="margin-top: 15px;">
+          Mi experiencia abarca el desarrollo de aplicaciones web, diseño de MOOCs, integración de IoT (ESP8266), automatización de reportes con Python y SQL, 
+          y gestión de plataformas LMS. Tengo sólidos fundamentos en Big Data, computación en la nube e inteligencia de negocios, 
+          y me destaco por mi compromiso con el trabajo en equipo y mi alta capacidad de aprendizaje.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- Habilidades -->
-  <section class="seccion">
+  <section>
     <div class="container">
-      <h2>Habilidades</h2>
-      <div class="habilidades">
-        <span>HTML5</span>
-        <span>CSS3</span>
-        <span>JavaScript</span>
-        <span>Python</span>
-        <span>SQL / MySQL</span>
-        <span>Git / GitHub</span>
-        <span>Scrum</span>
-        <span>Diseño de MOOCs</span>
-        <span>Integración IoT (ESP8266)</span>
-        <span>Big Data (fundamentos)</span>
-        <span>Plataformas LMS</span>
-        <span>Automatización de reportes</span>
+      <h2>Habilidades Técnicas</h2>
+      <div class="skills-container">
+        <span class="skill-tag">HTML5</span>
+        <span class="skill-tag">CSS3</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL / MySQL</span>
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag">Scrum</span>
+        <span class="skill-tag">MOOCs / LMS</span>
+        <span class="skill-tag">Diseño Instruccional</span>
+        <span class="skill-tag">IoT (ESP8266)</span>
+        <span class="skill-tag">Big Data (fundamentos)</span>
+        <span class="skill-tag">Cloud Computing</span>
+        <span class="skill-tag">Business Intelligence</span>
+        <span class="skill-tag">Digitalización Documental</span>
       </div>
     </div>
   </section>
 
   <!-- Proyectos -->
-  <section class="seccion">
+  <section class="section-bg">
     <div class="container">
       <h2>Proyectos Destacados</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3><i class="fas fa-cogs"></i> Sistema de Gestión de Inventario</h3>
+          <div class="tech">Tecnologías: Python, MySQL, HTML, CSS</div>
+          <p>Desarrollé un sistema interno para controlar inventario técnico con formularios responsivos y validación de datos.</p>
+          <ul>
+            <li>Reducción del 40% en errores de registro</li>
+            <li>Mejor gestión de entradas y salidas</li>
+            <li>Documentación técnica incluida</li>
+          </ul>
+        </div>
 
-      <div class="proyecto">
-        <h3>🔍 Sistema de Gestión de Inventario</h3>
-        <p><strong>Tecnologías:</strong> Python, MySQL, HTML, CSS</p>
-        <p>Desarrollé un sistema interno para controlar inventario técnico. Incluye formularios responsivos, validación de datos y reportes automatizados.</p>
-        <p><strong>Resultados:</strong> Reducción del 40% en errores de registro y mejor gestión de entradas/salidas.</p>
-      </div>
+        <div class="project-card">
+          <h3><i class="fas fa-robot"></i> Automatización de Reportes</h3>
+          <div class="tech">Tecnologías: Python, SQL</div>
+          <p>Scripts para generar reportes automáticos a partir de bases de datos internas.</p>
+          <ul>
+            <li>Optimización de tiempos operativos</li>
+            <li>Integración con sistemas existentes</li>
+          </ul>
+        </div>
 
-      <div class="proyecto">
-        <h3>📊 Automatización de Reportes</h3>
-        <p><strong>Tecnologías:</strong> Python, SQL</p>
-        <p>Scripts para generar reportes automáticos a partir de bases de datos internas, optimizando tiempos del equipo operativo.</p>
-      </div>
-
-      <div class="proyecto">
-        <h3>🎓 Diseño de MOOCs</h3>
-        <p><strong>Área:</strong> Educación Digital</p>
-        <p>Colaboré en la creación de contenidos instruccionales, guías técnicas y formularios interactivos para cursos virtuales.</p>
+        <div class="project-card">
+          <h3><i class="fas fa-graduation-cap"></i> Diseño de MOOCs</h3>
+          <div class="tech">Área: Educación Digital</div>
+          <p>Creación de contenidos instruccionales, guías técnicas y formularios interactivos para cursos virtuales.</p>
+          <ul>
+            <li>Colaboración con equipos de diseño instruccional</li>
+            <li>Enfoque en usabilidad y accesibilidad</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Experiencia -->
-  <section class="seccion">
+  <section>
     <div class="container">
-      <h2>Experiencia</h2>
-
-      <div class="experiencia-item">
-        <h3>Desarrollador Junior — Globanix Software Solutions</h3>
-        <p><em>Ene 2024 – Jun 2025</em></p>
+      <h2>Experiencia Profesional</h2>
+      <div class="experience-item">
+        <div class="job-title">Desarrollador Junior</div>
+        <div class="company">Globanix Software Solutions</div>
+        <span class="date">Ene 2024 – Jun 2025</span>
         <ul>
-          <li>Desarrollo de interfaces con HTML, CSS y JavaScript.</li>
-          <li>Integración backend con Python y MySQL.</li>
-          <li>Testing, documentación técnica y despliegues en entornos locales con metodología Scrum.</li>
-          <li>Desarrollo de formularios responsivos y automatización de reportes.</li>
+          <li>Desarrollo de interfaces con HTML, CSS y JavaScript</li>
+          <li>Integración backend con Python y MySQL</li>
+          <li>Testing, documentación técnica y despliegues en entornos locales con Scrum</li>
+          <li>Automatización de reportes y formularios responsivos</li>
         </ul>
       </div>
 
-      <div class="experiencia-item">
-        <h3>Asistente de Gestión de Datos — EdTech Bogotá Innovadora</h3>
-        <p><em>Ene 2024 – Dic 2024</em></p>
+      <div class="experience-item">
+        <div class="job-title">Asistente de Gestión de Datos</div>
+        <div class="company">EdTech Bogotá Innovadora</div>
+        <span class="date">Ene 2024 – Dic 2024</span>
         <ul>
-          <li>Actualización y mantenimiento de bases de datos internas.</li>
-          <li>Digitalización de documentos y sistematización de información.</li>
+          <li>Actualización y mantenimiento de bases de datos internas</li>
+          <li>Digitalización de documentos y sistematización de información</li>
+          <li>Manejo de herramientas ofimáticas y respaldo de información</li>
         </ul>
       </div>
 
-      <div class="experiencia-item">
-        <h3>Practicante en Desarrollo Digital — TecniRadiadores Colombia</h3>
-        <p><em>Ene 2024 – Mar 2024</em></p>
+      <div class="experience-item">
+        <div class="job-title">Practicante en Desarrollo Digital</div>
+        <div class="company">TecniRadiadores Colombia</div>
+        <span class="date">Ene 2024 – Mar 2024</span>
         <ul>
-          <li>Apoyo en diseño de formularios y documentación funcional.</li>
-          <li>Colaboración en diseño de contenidos para MOOCs.</li>
+          <li>Apoyo en diseño de formularios y documentación funcional</li>
+          <li>Colaboración en diseño de contenidos para MOOCs</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educación -->
+  <section class="section-bg">
+    <div class="container">
+      <h2>Formación Académica</h2>
+      <div class="education-item">
+        <div class="degree">Tecnólogo en Análisis y Desarrollo de Software</div>
+        <div class="institution">SENA – Regional Antioquia</div>
+        <div class="year">2022 – 2025</div>
+      </div>
+      <div class="education-item">
+        <div class="degree">Técnico Laboral en Mantenimiento Electrónico</div>
+        <div class="institution">Centro de Formación Minero Ambiental – Sincelejo</div>
+        <div class="year">2010 – 2012</div>
+      </div>
+      <div class="education-item">
+        <div class="degree">Certificaciones: Big Data, MOOCs, IoT, Tratamiento de Datos</div>
+        <div class="institution">Fundación Carlos Slim – Capacítate para el Empleo</div>
       </div>
     </div>
   </section>
@@ -133,5 +444,6 @@
       <p>© 2025 Miguel Ángel Buelvas — Desarrollador Junior • Bogotá, Colombia</p>
     </div>
   </footer>
+
 </body>
 </html>
